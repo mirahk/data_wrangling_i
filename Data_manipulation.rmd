@@ -43,20 +43,46 @@ select(litters_df, starts_with("gd"))
 
 ```{r}
 select(litters_df, litter_number, everything()) #brings littler number to bring
-relocate(litters_dfm, litter_number)
+relocate(litters_df, litter_number)
+
+```
+
+## Filter
+
+```{r}
+filter(litters_df, gd0_weight >= 22)
+```
+
+```{r}
+filter(litters_df, gd_of_birth ==20)
+```
+
+```{r}
+filter(litters_df, !(gd_of_birth == 20)) #! negates the operation
+```
+
+
+```{r}
+filter(litters_df, gd0_weight >= 22, gd_of_birth ==20)
 
 ```
 
 ```{r}
-options(tibble.print_min = 3)
+filter(litters_df, group == "Mod8")
 
-litters_data = read_csv("./data/FAS_litters.csv",
-  col_types = "ccddiiii")
-litters_data = janitor::clean_names(litters_data)
+```
 
-pups_data = read_csv("./data/FAS_pups.csv",
-  col_types = "ciiiii")
-pups_data = janitor::clean_names(pups_data)
+```{r}
+filter(litters_df, group %in% c("Con7", "Mod8")) # or 
+```
+
+## mutate
+
+```{r}
+mutate(
+  litters_df, 
+  wt_gain = gd18_weight - gd0_weight,
+  group = str_to_lower(group)) #override group variable
 
 ```
 
