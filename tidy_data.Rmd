@@ -1,0 +1,91 @@
+---
+title: "Data Import"
+output: github_document
+---
+```{r setup}
+library(tidyverse)
+library(readxl)
+library(haven)
+```
+
+## Read in some data
+
+
+absolute directions- go from the very first folder on your hardrive. 
+relative path (use this) - start from where you are now. it assumes that the file you are trying to get to is close to where your code file is. These are stable because the relative paths can be used by others reading the code. absolute paths only apply to your own computer
+
+benefit of using an R project is you can start construction relative paths from there. 
+
+Read in the litters dataset: comes from a study on fetal alc syndrome
+
+```{r}
+litters_df = read_csv("./data/FAS_litters.csv") #relative path
+litters_df = janitor::clean_names(litters_df) # ::calls the function from the janitor function without loading the entire library
+```
+
+
+
+## Take a look at the data 
+
+printing in the console
+```{r}
+litters_df
+```
+
+```{r}
+head(litters_df)
+tail(litters_df)
+```
+```{r}
+skimr::skim(litters_df) #gives a nice summary of the data. also calling on one function in skimr library
+
+```
+
+view(litters_df), opens another window where you can view the data. dont but in a code chunck or in r markdown. just type in console
+<dbl> is a number with missing values coded as NA
+
+csv= common separated values. do ?read_csv to get more info on how to import csv
+
+## Options to read_csv
+
+```{r}
+litters_df = read_csv("./data/FAS_litters.csv", skip = 10, col_names = FALSE) #useful if first row is not columns or maybe there is a discription. this skips some rows withour making numbers column names. 
+litters_df = read_csv("./data/FAS_litters.csv", na = c( "", "NA", 999)) #any of these three would be changed and stored as missing values
+
+```
+
+
+## other file formats 
+
+read in an excel file
+?read_excel for more info.
+sheet = Null specify sheet
+range = Null specify range of values in columbs 
+
+```{r}
+#load readxl
+mlb_df = read_excel("./data/mlb11.xlsx", range = "A1:F7") #names are good, no need for janitor function
+
+```
+
+## read in a sas file
+```{r}
+pulse_df = read_sas("./data/public_pulse_data.sas7bdat")
+```
+
+
+## comparison with Base R
+
+what about read.csv..? don't use
+prints out entire database
+
+
+## exporting data
+
+```{r}
+mlb_df
+write_csv(mlb_df, "./data/mlb_subtable.csv")
+```
+
+
+
