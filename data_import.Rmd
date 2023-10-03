@@ -42,7 +42,15 @@ skimr::skim(litters_df) #gives a nice summary of the data. also calling on one f
 view(litters_df), opens another window where you can view the data. dont but in a code chunck or in r markdown. just type in console
 <dbl> is a number with missing values coded as NA
 
+csv= common separated values. do ?read_csv to get more info on how to import csv
+
+## Options to read_csv
+
 ```{r}
+litters_df = read_csv("./data/FAS_litters.csv", skip = 10, col_names = FALSE) #useful if first row is not columns or maybe there is a discription. this skips some rows withour making numbers column names. 
+litters_df = read_csv("./data/FAS_litters.csv", na = c( "", "NA", 999)) #any of these three would be changed and stored as missing values
 
 ```
+
+
 
