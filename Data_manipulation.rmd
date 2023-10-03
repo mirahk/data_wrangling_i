@@ -1,10 +1,49 @@
 ---
-title: "Data Wrangling ii"
+title: "Data Manipulation"
 
 output: github_document
 ---
 ```{r}
 library(tidyverse)
+
+```
+
+
+##load the FAS Litters Data
+
+```{r}
+litters_df = read_csv("./data/FAS_litters.csv") #relative path
+litters_df = janitor::clean_names(litters_df)
+
+```
+
+##select
+ choose some columns and not others
+```{r}
+select(litters_df, group, litter_number) #pick columns to keep
+#use :: to select a range of columns or , to pck different ones
+#to specifiy what to get rid of instead of picking wat to have use -litter_number
+
+```
+
+Renaming columns
+
+```{r}
+select(litters_df, GROUP=group, LITTer_NUmber = litter_number) #renaming
+rename(litters_df, GROUP=group, LITTer_NUmber = litter_number) #another renaiming more
+
+```
+
+Select helpers
+
+```{r}
+select(litters_df, starts_with("gd"))
+
+```
+
+```{r}
+select(litters_df, litter_number, everything()) #brings littler number to bring
+relocate(litters_dfm, litter_number)
 
 ```
 
