@@ -1,21 +1,27 @@
 ---
-title: "Simple document"
-output: html_document
+title: "Data Import"
+output: github_document
 ---
-
-I'm an R Markdown document! 
-
-# Section 1
-
-Here's a **code chunk** that samples from 
-a _normal distribution_:
-
-```{r}
-samp = rnorm(100)
-length(samp)
+```{r setup}
+library(tidyverse)
 ```
 
-# Section 2
+## Read in some data
 
-I can take the mean of the sample, too!
-The mean is `r mean(samp)`.
+
+absolute directions- go from the very first folder on your hardrive. 
+relative path (use this) - start from where you are now. it assumes that the file you are trying to get to is close to where your code file is. These are stable because the relative paths can be used by others reading the code. absolute paths only apply to your own computer
+
+benefit of using an R project is you can start construction relative paths from there. 
+
+Read in the litters dataset: comes from a study on fetal alc syndrome
+
+```{r}
+litters_df = read_csv("./data/FAS_litters.csv") #relative path
+litters_df = janitor::clean_names(litters_df) # ::calls the function from the janitor function without loading the entire library
+```
+
+
+
+## Take a look at the data 
+
