@@ -25,4 +25,21 @@ pulse_df =
   
 ```
 
+learning assessment
+```{r}
+litters_wide = 
+  read_csv("./data/FAS_litters.csv") |>
+  janitor::clean_names() |>
+  select(litter_number, ends_with("weight")) |> 
+  pivot_longer(
+    gd0_weight:gd18_weight,
+    names_to = "gd", 
+    values_to = "weight") |> 
+  mutate(
+    gd = case_match(
+      gd,
+      "gd0_weight"  ~ 0,
+      "gd18_weight" ~ 18
+    ))
+```
 
