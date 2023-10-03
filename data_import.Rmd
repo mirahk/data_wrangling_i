@@ -25,3 +25,24 @@ litters_df = janitor::clean_names(litters_df) # ::calls the function from the ja
 
 ## Take a look at the data 
 
+printing in the console
+```{r}
+litters_df
+```
+
+```{r}
+head(litters_df)
+tail(litters_df)
+```
+```{r}
+skimr::skim(litters_df) #gives a nice summary of the data. also calling on one function in skimr library
+
+```
+
+view(litters_df), opens another window where you can view the data. dont but in a code chunck or in r markdown. just type in console
+<dbl> is a number with missing values coded as NA
+
+```{r}
+
+```
+
