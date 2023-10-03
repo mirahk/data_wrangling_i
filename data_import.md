@@ -16,6 +16,11 @@ library(tidyverse)
     ## ✖ dplyr::lag()    masks stats::lag()
     ## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 
+``` r
+library(readxl)
+library(haven)
+```
+
 ## Read in some data
 
 absolute directions- go from the very first folder on your hardrive.
@@ -170,3 +175,19 @@ litters_df = read_csv("./data/FAS_litters.csv", na = c( "", "NA", 999)) #any of 
     ## 
     ## ℹ Use `spec()` to retrieve the full column specification for this data.
     ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+## other file formats
+
+read in an excel file ?read_excel for more info. sheet = Null specify
+sheet range = Null specify range of values in columbs
+
+``` r
+#load readxl
+mlb_df = read_excel("./data/mlb11.xlsx", range = "A1:F7") #names are good, no need for janitor function
+```
+
+## read in a sas file
+
+``` r
+pulse_df = read_sas("./data/public_pulse_data.sas7bdat")
+```
